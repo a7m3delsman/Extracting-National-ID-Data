@@ -2,10 +2,7 @@ function extractData() {
     var nationalId = document.getElementById("national-id").value;
     var resultContainer = document.getElementById("result-container");
     
-    if (nationalId.length !== 14||birthDay>31||birthMonth>12 || configuration>999) {
-      resultContainer.innerHTML = "<b class='error'>. هناك  خطا - الرجاء إدخال الرقم قومي صحيح</b>";
-      return;
-    }
+    
     var configuration = nationalId.substring(9,12);
 
     var birthYear = nationalId.substring(1, 3);
@@ -32,7 +29,10 @@ function extractData() {
     var gender = (genderCode % 2 === 0) ? "أنثى" : "ذكر";
     
     var governorate = getGovernorate(governorateCode);
-    
+    if (nationalId.length !== 14||birthDay>31||birthMonth>12) {
+      resultContainer.innerHTML = "<b class='error'>. هناك خطأ - الرجاء إدخال الرقم القومي صحيح</b>";
+      return;
+    }
     var
     result = "<p>  تاريخ الميلاد :   " + birthDay + "/" + birthMonth + "/" + birthYear + "</p>"+"<br>";
     result += "<p> السن :  " + age + " سنة</p>" +"<br>";
